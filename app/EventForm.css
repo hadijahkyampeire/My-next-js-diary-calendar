@@ -1,0 +1,17 @@
+form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input {
+  border: 1px solid #000;
+  width: 30rem;
+  border-radius: 0.25rem;
+}
+
+form button {
+  border: 1px solid #000;
+  border-radius: 0.25rem;
+  padding: 0 2rem;
+}
