@@ -6,3 +6,21 @@ h1 {
 h2 {
   font-weight: bold;
 }
+
+.my-diary-container {
+  margin: 2rem;
+}
+
+.my-diary-container h1 {
+  text-align: center;
+}
+
+.events-container {
+  background-color: #353588ad;
+  padding: 2rem;
+  margin-top: 1rem;
+}
+
+.events-container h2 {
+  margin-bottom: 1rem;
+}

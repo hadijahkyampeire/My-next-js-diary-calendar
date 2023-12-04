@@ -9,32 +9,40 @@ interface Events {
 }
 
 export default function Home() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [month, setMonth] = useState(new Date().getMonth());
+  const [year, setYear] = useState(new Date().getFullYear());
+  const [selectedDate, setSelectedDate] = useState(new Date().getDate());
   const [events, setEvents] = useState<Events>({});
 
-  const handleSelectDate = (date: Date) => {
+  const handleSelectDate = (date: number) => {
     setSelectedDate(date);
   };
 
   const handleAddEvent = (event: string) => {
     setEvents((prevEvents) => ({
       ...prevEvents,
-      [selectedDate.toISOString()]: [...(prevEvents[selectedDate.toISOString()] || []), event],
+      [`${selectedDate}-${month + 1}-${year}`]: [...(prevEvents[`${selectedDate}-${month + 1}-${year}`] || []), event],
     }));
   };
 
-  const selectedDateString: string = selectedDate ? selectedDate.toISOString() : '';
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="my-diary-container">
       <h1>Haddyz Diary Calendar App</h1>
-      <Calendar setSelectedDate={handleSelectDate} selectedDate={selectedDate} />
-      <EventForm selectedDate={selectedDate} onSubmit={handleAddEvent} />
-      {events[selectedDateString] && (
-        <div>
-          <h2>Events for {selectedDate.toLocaleDateString()}:</h2>
+      <Calendar 
+        setSelectedDate={handleSelectDate} 
+        selectedDate={selectedDate} 
+        year={year}
+        month={month}
+        setMonth={setMonth}
+        events={events}
+        setYear={setYear} />
+      <EventForm selectedDate={selectedDate} onSubmit={handleAddEvent} year={year} month={month} />
+      {events[`${selectedDate}-${month + 1}-${year}`] && (
+        <div className='events-container'>
+          <h2>Events for {`${selectedDate}-${month}-${year}`}:</h2>
           <ul>
-            {events[selectedDateString]?.map((event, index) => (
+            {events[`${selectedDate}-${month + 1}-${year}`]?.map((event, index) => (
               <li key={index}>{event}</li>
             ))}
           </ul>
