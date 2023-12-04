@@ -9,7 +9,7 @@ interface Events {
 }
 
 export default function Home() {
-  const [month, setMonth] = useState(new Date().getMonth());
+  const [month, setMonth] = useState(new Date().getMonth() as number);
   const [year, setYear] = useState(new Date().getFullYear());
   const [selectedDate, setSelectedDate] = useState(new Date().getDate());
   const [events, setEvents] = useState<Events>({});

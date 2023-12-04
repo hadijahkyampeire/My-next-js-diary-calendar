@@ -87,7 +87,8 @@ const Calendar: React.FC<calendarProps> = ({
             day={day}
             onSelectDate={setSelectedDate}
             selected={day === selectedDate}
-            hasEvent={events[`${day}-${month + 1}-${year}`]?.length > 0}
+            // @ts-ignore
+            hasEvent={events[`${day}-${month + 1}-${year}`]?.length > 0} 
           />
         ))}
       </div>
